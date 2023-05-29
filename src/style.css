@@ -1,0 +1,10 @@
+.sidebar .main-content {
+   margin-top:15px ;
+}
+
+.sidebar .main-content a{
+   text-decoration: none;
+   text-align: center;
+   color: #13b955;
+}
+

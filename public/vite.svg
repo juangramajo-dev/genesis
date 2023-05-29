@@ -1,0 +1,37 @@
+<svg data-v-70b83f88="" version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 340.000000 250.000000" preserveAspectRatio="xMidYMid meet" color-interpolation-filters="sRGB" style="margin: auto;">
+    <rect data-v-70b83f88="" x="0" y="0" width="100%" height="100%" fill="#ffffff" fill-opacity="1" class="background"></rect>
+    <rect data-v-70b83f88="" x="0" y="0" width="100%" height="100%" fill="url(#watermark)" fill-opacity="1" class="watermarklayer"></rect>
+    <g data-v-70b83f88="" fill="#333" class="icon-text-wrapper icon-svg-group iconsvg" transform="translate(83,30.889991760253906)">
+        <g class="iconsvg-imagesvg" transform="translate(0,0)">
+            <g>
+                <rect fill="#333" fill-opacity="0" stroke-width="2" x="0" y="0" width="174.0000000000001" height="188.22002271620974" class="image-rect"></rect>
+                <svg x="0" y="0" width="174.0000000000001" height="188.22002271620974" filtersec="colorsb8955266903" class="image-svg-svg primary" style="overflow: visible;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.000148773193359375 -0.004605850670486689 125.57014465332031 135.83187866210938">
+                        <title>资源 93</title>
+                        <path d="M102.75 39.88L120.88 18a87.36 87.36 0 0 0-10.51-7.69 62.79 62.79 0 0 0-11.63-5.62 76.28 76.28 0 0 0-13.42-3.47A97 97 0 0 0 69.28 0 69.64 69.64 0 0 0 41.7 5.35 67.27 67.27 0 0 0 21 19a57.6 57.6 0 0 1 23.5-3.22c16 .86 33.82 7.06 49.89 17.9 2.82 1.91 5.63 4 8.39 6.24z" fill="#0B5394"></path>
+                        <path d="M125.57 115V58h-57v25h29.04v18.89q-11.07 7.92-27.21 7.94c-16.84 0-30.84-9.28-36.86-25.11-5.8-15.22-3.14-33.93 8.06-45.94a39.81 39.81 0 0 1 12-8.85A33.29 33.29 0 0 1 67 26.67a82.64 82.64 0 0 0-22.84-4.76C.33 19.53-7.06 64.65 5.49 95.31c20 48.91 83.26 51.07 120.08 19.7z" fill="#333"></path>
+                    </svg>
+                </svg>
+                <!---->
+            </g>
+        </g>
+        <g transform="translate(87,195.2200164794922)">
+            <g data-gra="path-name" fill-rule="" class="tp-name iconsvg-namesvg">
+                <g transform="scale(1)">
+                    <g>
+                        <path d="" transform="translate(0, 0)"></path>
+                    </g>
+                    <!---->
+                <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                </g>
+            </g>
+            <!---->
+        </g>
+    </g>
+    <defs v-gra="od"></defs>
+</svg>
