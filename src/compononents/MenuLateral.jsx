@@ -19,7 +19,7 @@ import ListaDeAlumnos from "./Alumno/ListaDeAlumnos";
 import OpcionesProfesores from './Profesores/OpcionesProfesor';
 import Dashboard from './Dashboard';
 import BajaDeAlumno from "./Alumno/BajaDeAlumno";
-import ModificarAlumno from "./Alumno/ModificarAlumno";
+// import ModificarAlumno from "./Alumno/ModificarAlumno";
 
 
 
@@ -56,8 +56,8 @@ const MenuLateral = () => {
             return <div><OpcionesProfesores/></div>;
         } else if (selectedOption === 'bajaDeAlumno') {
             return <div><BajaDeAlumno/></div>;
-        } else if (selectedOption === 'modificarAlumno') {
-            return <div><ModificarAlumno/></div>;
+        // } else if (selectedOption === 'modificarAlumno') {
+        //     return <div><ModificarAlumno/></div>;
         } else {
             return <div><div><Dashboard/></div></div>;  
                   
@@ -114,7 +114,7 @@ const MenuLateral = () => {
                     Baja de alumno
                   </a>
                 </li>
-                <li className="nav-item  pt-3">
+                {/* <li className="nav-item  pt-3">
                   <a
                     className="nav-link text-info"
                     href="#"
@@ -123,7 +123,7 @@ const MenuLateral = () => {
                     <FontAwesomeIcon icon={faUserEdit} />
                     Modificar alumno
                   </a>
-                </li>
+                </li> */}
 
                 <hr />
 

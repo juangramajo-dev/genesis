@@ -8,6 +8,10 @@ import { Flip } from "react-toastify";
 
 const BajaDeAlumno = () => {
   const [alumnos, setAlumnos] = useState([]);
+  const [busqueda, setBusqueda] = useState("");
+  const [alumnosFiltrados, setAlumnosFiltrados] = useState([]);
+
+
   const [selectedAlumno, setSelectedAlumno] = useState("");
 //   const [mensaje, setMensaje] = useState("");
 
@@ -23,6 +27,20 @@ const BajaDeAlumno = () => {
         // Manejar errores si es necesario
       });
   }, []);
+
+    const handleBusquedaChange = (event) => {
+      setBusqueda(event.target.value);
+      filterAlumnos(event.target.value);
+    };
+
+const filterAlumnos = (query) => {
+  const filteredAlumnos = alumnos.filter((alumno) => {
+    const nombreCompleto =
+      `${alumno.nombre} ${alumno.apellido} ${alumno.DNI} ${alumno.email}`.toLowerCase();
+    return nombreCompleto.includes(query.toLowerCase());
+  });
+  setAlumnosFiltrados(filteredAlumnos);
+};
 
   const handleDropdownChange = (event) => {
     setSelectedAlumno(event.target.value);
@@ -70,6 +88,18 @@ const BajaDeAlumno = () => {
     <div className="container">
       <h2>Baja de Alumno</h2>
       <div className="mb-3">
+        <label htmlFor="busquedaInput" className="form-label">
+          Buscar alumno:
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="busquedaInput"
+          value={busqueda}
+          onChange={handleBusquedaChange}
+        />
+      </div>
+      <div className="mb-3">
         <label htmlFor="alumnoDropdown" className="form-label">
           Selecciona un alumno:
         </label>
@@ -79,10 +109,10 @@ const BajaDeAlumno = () => {
           value={selectedAlumno}
           onChange={handleDropdownChange}
         >
-          <option value="">-- Seleccione un alumno de la lista --</option>
-          {alumnos.map((alumno) => (
+          <option value="">-- Seleccione --</option>
+          {alumnosFiltrados.map((alumno) => (
             <option key={alumno.id} value={alumno.id}>
-              {alumno.nombre} {alumno.apellido}
+              {alumno.nombre} {alumno.apellido} {alumno.DNI}
             </option>
           ))}
         </select>

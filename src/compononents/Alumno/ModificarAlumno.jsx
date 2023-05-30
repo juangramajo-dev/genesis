@@ -1,21 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import "../../App.css";
 
-const ModificarAlumno = () => {
+const Alumnos = () => {
   const [alumnos, setAlumnos] = useState([]);
-  const [selectedAlumno, setSelectedAlumno] = useState("");
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [direccion, setDireccion] = useState("");
-  const [DNI, setDNI] = useState("");
-  const [sucursal, setSucursal] = useState("");
-  const [inicio, setInicio] = useState("");
-  const [curso, setCurso] = useState("");
-  const [mensaje, setMensaje] = useState("");
   const [busqueda, setBusqueda] = useState("");
-  const [alumnosFiltrados, setAlumnosFiltrados] = useState([]);
+  const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
+  const [alumnoModificado, setAlumnoModificado] = useState({});
+  const [mensaje, setMensaje] = useState("");
 
   useEffect(() => {
     // Realizar la solicitud GET al cargar el componente
@@ -30,324 +22,244 @@ const ModificarAlumno = () => {
       });
   }, []);
 
-  useEffect(() => {
-    // Actualizar los campos cuando se selecciona un alumno
-    if (selectedAlumno) {
-      const alumno = alumnos.find((alumno) => alumno.id === selectedAlumno);
-      if (alumno) {
-        setNombre(alumno.nombre);
-        setApellido(alumno.apellido);
-        setEmail(alumno.email);
-        setTelefono(alumno.telefono);
-        setDireccion(alumno.direccion);
-        setDNI(alumno.DNI);
-        setSucursal(alumno.sucursal);
-        setInicio(alumno.inicio);
-        setCurso(alumno.curso);
-      }
-    }
-  }, [selectedAlumno, alumnos]);
-
- const handleDropdownChange = (event) => {
-   const selectedId = event.target.value;
-   setSelectedAlumno(selectedId);
-
-   if (selectedId) {
-     const selectedAlumno = alumnos.find((alumno) => alumno.id === selectedId);
-     if (selectedAlumno) {
-       setNombre(selectedAlumno.nombre);
-       setApellido(selectedAlumno.apellido);
-       setEmail(selectedAlumno.email);
-       setTelefono(selectedAlumno.telefono);
-       setDireccion(selectedAlumno.direccion);
-       setDNI(selectedAlumno.DNI);
-       setSucursal(selectedAlumno.sucursal);
-       setInicio(selectedAlumno.inicio);
-       setCurso(selectedAlumno.curso);
-     }
-   } else {
-     setNombre("");
-     setApellido("");
-     setEmail("");
-     setTelefono("");
-     setDireccion("");
-     setDNI("");
-     setSucursal("");
-     setInicio("");
-     setCurso("");
-   }
- };
-
-
-  const handleNombreChange = (event) => {
-    setNombre(event.target.value);
-  };
-
-  const handleApellidoChange = (event) => {
-    setApellido(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handleTelefonoChange = (event) => {
-    setTelefono(event.target.value);
-  };
-
-  const handleDireccionChange = (event) => {
-    setDireccion(event.target.value);
-  };
-
-  const handleDniChange = (event) => {
-    setDNI(event.target.value);
-  };
-
-  const handleSucursalChange = (event) => {
-    setSucursal(event.target.value);
-  };
-
-  const handleInicioChange = (event) => {
-    setInicio(event.target.value);
-  };
-
-  const handleCursoChange = (event) => {
-    setCurso(event.target.value);
-    };
-    
-  const handleBusquedaChange = (event) => {
+  const handleBusqueda = (event) => {
     setBusqueda(event.target.value);
-    filterAlumnos(event.target.value);
   };
 
-const filterAlumnos = (query) => {
   const filteredAlumnos = alumnos.filter((alumno) => {
-    const nombreCompleto = `${alumno.nombre} ${alumno.apellido}`.toLowerCase();
-    return nombreCompleto.includes(query.toLowerCase());
+    const datosAlumnos =
+      `${alumno.nombre} ${alumno.apellido} ${alumno.email}${alumno.sucursal}${alumno.inicio}${alumno.telefono}${alumno.direccion}${alumno.DNI}${alumno.curso}`.toLowerCase();
+    return datosAlumnos.includes(busqueda.toLowerCase());
   });
-  setAlumnosFiltrados(filteredAlumnos);
-};
 
-  const handleModificarClick = () => {
-    if (
-      selectedAlumno &&
-      nombre &&
-      apellido &&
-      email &&
-      telefono &&
-      direccion &&
-      DNI &&
-      sucursal &&
-      inicio &&
-      curso
-    ) {
-      // Realizar la solicitud PUT para modificar los datos del alumno
-      axios
-        .put(`http://localhost:3000/update/${selectedAlumno}`, {
-          nombre,
-          apellido,
-          email,
-          telefono,
-          direccion,
-          DNI,
-          sucursal,
-          inicio,
-          curso,
-        })
-        .then((response) => {
-          setMensaje(
-            `Datos del alumno ${selectedAlumno} modificados exitosamente.`
-          );
-          // Actualizar la lista de alumnos después de la modificación
-          setAlumnos(
-            alumnos.map((alumno) => {
-              if (alumno.id === selectedAlumno) {
-                return {
-                  ...alumno,
-                  nombre,
-                  apellido,
-                  email,
-                  telefono,
-                  direccion,
-                  DNI,
-                  sucursal,
-                  inicio,
-                  curso,
-                };
-              }
-              return alumno;
-            })
-          );
-          setSelectedAlumno("");
-          setNombre("");
-          setApellido("");
-          setEmail("");
-          setTelefono("");
-          setDireccion("");
-          setDNI("");
-          setSucursal("");
-          setInicio("");
-          setCurso("");
-        })
-        .catch((error) => {
-          console.error(error);
-          setMensaje("Error al modificar los datos del alumno.");
+  const abrirModal = (alumno) => {
+    setAlumnoSeleccionado(alumno);
+    setAlumnoModificado(alumno);
+  };
+
+  const cerrarModal = () => {
+    setAlumnoSeleccionado(null);
+    setAlumnoModificado({});
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setAlumnoModificado((prevAlumnoModificado) => ({
+      ...prevAlumnoModificado,
+      [name]: value,
+    }));
+  };
+
+  const guardarCambios = () => {
+    const { id } = alumnoSeleccionado;
+    axios
+      .put(`http://localhost:3000/update/${id}`, alumnoModificado)
+      .then((response) => {
+        setMensaje(`Datos del alumno ${id} modificados exitosamente.`);
+        setAlumnos((prevAlumnos) => {
+          const updatedAlumnos = prevAlumnos.map((alumno) => {
+            if (alumno.id === id) {
+              return { ...alumno, ...alumnoModificado };
+            }
+            return alumno;
+          });
+          return updatedAlumnos;
         });
-    }
+        cerrarModal();
+      })
+      .catch((error) => {
+        console.error(error);
+        setMensaje("Error al modificar los datos del alumno.");
+      });
   };
 
   return (
     <div className="container">
-      <h2>Modificar Alumno</h2>
+      <h2>Lista de Alumnos</h2>
       <div className="mb-3">
-        <label htmlFor="busquedaInput" className="form-label">
-          Buscar alumno:
-        </label>
         <input
           type="text"
           className="form-control"
-          id="busquedaInput"
+          placeholder="Buscar..."
           value={busqueda}
-          onChange={handleBusquedaChange}
+          onChange={handleBusqueda}
         />
       </div>
-      <div className="mb-3">
-        <label htmlFor="alumnoDropdown" className="form-label">
-          Selecciona un alumno:
-        </label>
-        <select
-          id="alumnoDropdown"
-          className="form-select"
-          value={selectedAlumno}
-          onChange={handleDropdownChange}
-        >
-          <option value="">-- Seleccione --</option>
-          {alumnosFiltrados.map((alumno) => (
-            <option key={alumno.id} value={alumno.id}>
-              {alumno.nombre} {alumno.apellido} {alumno.DNI}
-            </option>
+      {mensaje && <div className="alert alert-success">{mensaje}</div>}
+      <table className="table table-striped table-bordered table-hover">
+        <thead>
+          <tr className="table-dark text-center">
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Sucursal</th>
+            <th scope="col">Inicio</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredAlumnos.map((alumno) => (
+            <tr key={alumno.id}>
+              <td>{alumno.nombre}</td>
+              <td>{alumno.apellido}</td>
+              <td>{alumno.email}</td>
+              <td>{alumno.telefono}</td>
+              <td>{alumno.direccion}</td>
+              <td>{alumno.DNI}</td>
+              <td>{alumno.sucursal}</td>
+              <td>{alumno.inicio}</td>
+              <td>{alumno.curso}</td>
+              <td>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => abrirModal(alumno)}
+                >
+                  Modificar
+                </button>
+              </td>
+            </tr>
           ))}
-        </select>
-      </div>
-      <div className="mb-3">
-        <label htmlFor="nombreInput" className="form-label">
-          Nombre:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="nombreInput"
-          value={nombre}
-          onChange={handleNombreChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="apellidoInput" className="form-label">
-          Apellido:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="apellidoInput"
-          value={apellido}
-          onChange={handleApellidoChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="emailInput" className="form-label">
-          Email:
-        </label>
-        <input
-          type="email"
-          className="form-control"
-          id="emailInput"
-          value={email}
-          onChange={handleEmailChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="telefonoInput" className="form-label">
-          Teléfono:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="telefonoInput"
-          value={telefono}
-          onChange={handleTelefonoChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="direccionInput" className="form-label">
-          Dirección:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="direccionInput"
-          value={direccion}
-          onChange={handleDireccionChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="dniInput" className="form-label">
-          DNI:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="dniInput"
-          value={DNI}
-          onChange={handleDniChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="sucursalInput" className="form-label">
-          Sucursal:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="sucursalInput"
-          value={sucursal}
-          onChange={handleSucursalChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="inicioInput" className="form-label">
-          Inicio:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="inicioInput"
-          value={inicio}
-          onChange={handleInicioChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="cursoInput" className="form-label">
-          Curso:
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="cursoInput"
-          value={curso}
-          onChange={handleCursoChange}
-        />
-      </div>
-      <button className="btn btn-primary" onClick={handleModificarClick}>
-        Modificar
-      </button>
-      {mensaje && <p>{mensaje}</p>}
+        </tbody>
+      </table>
+
+      {alumnoSeleccionado && (
+        <div className="modal show" style={{ display: "block" }}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Modificar Alumno</h5>
+                <button type="button" className="close" onClick={cerrarModal}>
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="form-group">
+                  <label htmlFor="nombre">Nombre:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="nombre"
+                    name="nombre"
+                    value={alumnoModificado.nombre}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                 <div className="form-group">
+                   <label htmlFor="apellido">Apellido:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="apellido"
+                    name="apellido"
+                    value={alumnoModificado.apellido}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    value={alumnoModificado.email}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="telefono">Teléfono:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="telefono"
+                    name="telefono"
+                    value={alumnoModificado.telefono}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="direccion">Dirección:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="direccion"
+                    name="direccion"
+                    value={alumnoModificado.direccion}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="DNI">DNI:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="DNI"
+                    name="DNI"
+                    value={alumnoModificado.DNI}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="sucursal">Sucursal:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="sucursal"
+                    name="sucursal"
+                    value={alumnoModificado.sucursal}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="inicio">Inicio:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inicio"
+                    name="inicio"
+                    value={alumnoModificado.inicio}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="curso">Curso:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="curso"
+                    name="curso"
+                    value={alumnoModificado.curso}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={cerrarModal}
+                >
+                  Cerrar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={guardarCambios}
+                >
+                  Guardar cambios
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default ModificarAlumno;
-
-
-//-----------------------------------------------------------------
-
+export default Alumnos;
 
