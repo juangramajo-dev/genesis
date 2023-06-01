@@ -113,7 +113,7 @@ const Alumnos = () => {
       <ToastContainer transition={Flip} />
 
       <table className="table table-striped table-bordered table-hover">
-        <thead>
+        <thead className="tabla-fija">
           <tr className="table-dark text-center">
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
@@ -246,36 +246,89 @@ const Alumnos = () => {
                 </div>
                 <div className="form-group">
                   <label htmlFor="sucursal">Sucursal:</label>
-                  <input
-                    type="text"
-                    className="form-control"
+                  <select
                     id="sucursal"
                     name="sucursal"
+                    className="form-select"
                     value={alumnoModificado.sucursal}
                     onChange={handleInputChange}
-                  />
+                  >
+                    <option value="">Selecciona una sucursal</option>
+                    <option value="Buenos Aires">Buenos Aires</option>
+                    <option value="CABA">
+                      Ciudad Autónoma de Buenos Aires
+                    </option>
+                    <option value="Catamarca">Catamarca</option>
+                    <option value="Chaco">Chaco</option>
+                    <option value="Chubut">Chubut</option>
+                    <option value="Córdoba">Córdoba</option>
+                    <option value="Corrientes">Corrientes</option>
+                    <option value="Entre Ríos">Entre Ríos</option>
+                    <option value="Formosa">Formosa</option>
+                    <option value="Jujuy">Jujuy</option>
+                    <option value="La Pampa">La Pampa</option>
+                    <option value="La Rioja">La Rioja</option>
+                    <option value="Mendoza">Mendoza</option>
+                    <option value="Misiones">Misiones</option>
+                    <option value="Neuquén">Neuquén</option>
+                    <option value="Río Negro">Río Negro</option>
+                    <option value="Salta">Salta</option>
+                    <option value="San Juan">San Juan</option>
+                    <option value="San Luis">San Luis</option>
+                    <option value="Santa Cruz">Santa Cruz</option>
+                    <option value="Santa Fe">Santa Fe</option>
+                    <option value="Santiago del Estero">
+                      Santiago del Estero
+                    </option>
+                    <option value="Tierra del Fuego">Tierra del Fuego</option>
+                    <option value="Tucumán">Tucumán</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="inicio">Inicio:</label>
-                  <input
-                    type="text"
-                    className="form-control"
+                  <select
                     id="inicio"
                     name="inicio"
+                    className="form-select"
                     value={alumnoModificado.inicio}
                     onChange={handleInputChange}
-                  />
+                  >
+                    <option value="">Selecciona un inicio</option>
+                    <option value="Marzo">Marzo</option>
+                    <option value="Mayo">Mayo</option>
+                    <option value="Julio">Julio</option>
+                    <option value="Septiembre">Septiembre</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="curso">Curso:</label>
-                  <input
-                    type="text"
-                    className="form-control"
+                  <select
                     id="curso"
                     name="curso"
+                    className="form-select"
                     value={alumnoModificado.curso}
                     onChange={handleInputChange}
-                  />
+                  >
+                    <option value="">Selecciona un curso</option>
+                    <option value="Asistente farmaceutico">
+                      Asistente Farmacéutico
+                    </option>
+                    <option value=" Auxiliar Enfermería y Paramédico">
+                      Auxiliar Enfermería y Paramédico
+                    </option>
+                    <option value="Secretariado Escolar y Preceptor">
+                      Secretariado Escolar y Preceptor
+                    </option>
+                    <option value="Auxiliar Análisis Clínicos">
+                      Auxiliar Análisis Clínicos
+                    </option>
+                    <option value="Administración de Empresas">
+                      Administración de Empresas
+                    </option>
+                    <option value="Acompañante Terapéutico">
+                      Acompañante Terapéutico
+                    </option>
+                  </select>
                 </div>
               </div>
               <div className="modal-footer">

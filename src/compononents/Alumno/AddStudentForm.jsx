@@ -289,7 +289,7 @@ const AddStudentForm = () => {
       .then((response) => {
         console.log(response.data);
         setAlumno(initialState);
-        toast.success("¡Alumno registrado!", {
+        toast.success("¡Alumno incripto exitosamente!", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -302,7 +302,7 @@ const AddStudentForm = () => {
       })
       .catch((error) => {
         console.error(error);
-        toast.error("Ocurrió un error al cargar el alumno", {
+        toast.error("Ocurrió un error al inscribir el alumno", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -345,7 +345,7 @@ const AddStudentForm = () => {
       <div className="container mt-4">
         <div className="row justify-content-center">
           <div className="col-md-6">
-            <h2 className="text-center mt-3 mb-4">Formulario de Alumnos</h2>
+            <h2 className="text-center mt-3 mb-4">Inscripción de Alumno</h2>
           </div>
         </div>
       </div>
@@ -500,22 +500,30 @@ const AddStudentForm = () => {
             required
           >
             <option value="">Selecciona un curso</option>
-            <option value="AsistenteFarmacéutico">
+            <option value="Asistente_farmaceutico">
               Asistente Farmacéutico
             </option>
-            <option value="Enfermería">Auxiliar Enfermería y Paramédico</option>
-            <option value="Preceptor">Secretariado Escolar y Preceptor</option>
-            <option value="AnálisisClínicos">Auxiliar Análisis Clínicos</option>
-            <option value="Empresas">Administración de Empresas</option>
-            <option value="AcompañanteTerapéutico">
+            <option value="Auxiliar_Enfermería_y_Paramédico">
+              Auxiliar Enfermería y Paramédico
+            </option>
+            <option value="Secretariado_Escolar_y_Preceptor">
+              Secretariado Escolar y Preceptor
+            </option>
+            <option value="Auxiliar_Analisis_Clínicos">
+              Auxiliar Análisis Clínicos
+            </option>
+            <option value="Administracion_de_Empresas">
+              Administración de Empresas
+            </option>
+            <option value="Acompañante_Terapeutico">
               Acompañante Terapéutico
             </option>
           </select>
         </div>
 
-        <div className="mb-3 col-md-7">
+        <div className="mb-3 mt-5 col-md-7">
           <button type="submit" className="btn btn-primary">
-            Registrar
+            Inscribir alumno
           </button>
         </div>
       </form>

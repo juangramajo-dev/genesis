@@ -36,7 +36,7 @@ const BajaDeAlumno = () => {
 const filterAlumnos = (query) => {
   const filteredAlumnos = alumnos.filter((alumno) => {
     const nombreCompleto =
-      `${alumno.nombre} ${alumno.apellido} ${alumno.DNI} ${alumno.email}`.toLowerCase();
+      `${alumno.nombre} ${alumno.apellido} ${alumno.DNI} ${alumno.curso}`.toLowerCase();
     return nombreCompleto.includes(query.toLowerCase());
   });
   setAlumnosFiltrados(filteredAlumnos);
@@ -112,7 +112,7 @@ const filterAlumnos = (query) => {
           <option value="">-- Seleccione --</option>
           {alumnosFiltrados.map((alumno) => (
             <option key={alumno.id} value={alumno.id}>
-              {alumno.nombre} {alumno.apellido} {alumno.DNI}
+              {alumno.nombre} {alumno.apellido} {alumno.DNI} {alumno.curso}
             </option>
           ))}
         </select>

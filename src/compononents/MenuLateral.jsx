@@ -11,7 +11,7 @@ import {
   faUserSlash,
   faUserGraduate,
   faUserTie,
-  faUserEdit,
+  // faWavyMoneyBill,
 } from "@fortawesome/free-solid-svg-icons";
 
 import AddStudentForm from "./Alumno/AddStudentForm"
@@ -19,6 +19,7 @@ import ListaDeAlumnos from "./Alumno/ListaDeAlumnos";
 import OpcionesProfesores from './Profesores/OpcionesProfesor';
 import Dashboard from './Dashboard';
 import BajaDeAlumno from "./Alumno/BajaDeAlumno";
+import VerPagosProfesores from './Profesores/VerPagosProfesores ';
 // import ModificarAlumno from "./Alumno/ModificarAlumno";
 
 
@@ -56,8 +57,8 @@ const MenuLateral = () => {
             return <div><OpcionesProfesores/></div>;
         } else if (selectedOption === 'bajaDeAlumno') {
             return <div><BajaDeAlumno/></div>;
-        // } else if (selectedOption === 'modificarAlumno') {
-        //     return <div><ModificarAlumno/></div>;
+        } else if (selectedOption === 'verPagoProfesores') {
+            return <div><VerPagosProfesores/></div>;
         } else {
             return <div><div><Dashboard/></div></div>;  
                   
@@ -79,7 +80,7 @@ const MenuLateral = () => {
                     onClick={() => handleOptionClick("dashboard")}
                   >
                     <FontAwesomeIcon icon={faLineChart} />
-                    Dashboard
+                    <span className="m-3">Dashboard</span>
                   </a>
                 </li>
                 <hr />
@@ -90,7 +91,7 @@ const MenuLateral = () => {
                     onClick={() => handleOptionClick("agregarAlumno")}
                   >
                     <FontAwesomeIcon icon={faUserPlus} />
-                    Agregar alumnos
+                    <span className="m-2">Agregar alumno</span>
                   </a>
                 </li>
 
@@ -101,7 +102,7 @@ const MenuLateral = () => {
                     onClick={() => handleOptionClick("listaDeAlumnos")}
                   >
                     <FontAwesomeIcon icon={faUserGraduate} />
-                    Alumnos
+                    <span className="m-2">Alumnos</span>
                   </a>
                 </li>
                 <li className="nav-item  pt-3">
@@ -111,30 +112,30 @@ const MenuLateral = () => {
                     onClick={() => handleOptionClick("bajaDeAlumno")}
                   >
                     <FontAwesomeIcon icon={faUserSlash} />
-                    Baja de alumno
+                    <span className="m-2">Baja de alumno</span>
                   </a>
                 </li>
-                {/* <li className="nav-item  pt-3">
+                <li className="nav-item  pt-3">
                   <a
                     className="nav-link text-info"
                     href="#"
-                    onClick={() => handleOptionClick("modificarAlumno")}
+                    onClick={() => handleOptionClick("verPagoProfesores")}
                   >
-                    <FontAwesomeIcon icon={faUserEdit} />
-                    Modificar alumno
+                    {/* <FontAwesomeIcon icon={faWavyMoneyBill} /> */}
+                    <span className="m-2">Pagos de profesores</span>
                   </a>
-                </li> */}
+                </li>
 
                 <hr />
 
-                <li className="nav-item  pt-3">
+                <li className="nav-item  mt-2">
                   <a
                     className="nav-link text-info"
                     href="#"
                     onClick={() => handleOptionClick("pagoProfesores")}
                   >
                     <FontAwesomeIcon icon={faUserTie} />
-                    Profesores
+                    <span className="m-2">Profesores</span>
                   </a>
                 </li>
               </ul>

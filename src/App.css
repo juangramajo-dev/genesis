@@ -11,3 +11,10 @@ body{
 .ancho-columna{
     width: 10rem;
 }
+
+.tabla-fija {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #fff; /* ajusta el color de fondo según tus necesidades */
+  }
