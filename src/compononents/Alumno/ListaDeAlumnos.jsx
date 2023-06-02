@@ -58,7 +58,7 @@ const Alumnos = () => {
     const { id } = alumnoSeleccionado;
     axios
       .put(`http://localhost:3000/update/${id}`, alumnoModificado)
-      .then((response) => {
+      .then(() => {
         // setMensaje(`Datos del alumno ${id} modificados exitosamente.`);
         toast.success("Datos del alumno modificados exitosamente.", {
           position: "top-center",
@@ -99,8 +99,8 @@ const Alumnos = () => {
 
   return (
     <div className="container">
-      <h2>Lista de Alumnos</h2>
-      <div className="mb-3">
+      <h2 className="mt-4 mb-4">Lista de Alumnos</h2>
+      <div className="mb-3 mt-3">
         <input
           type="text"
           className="form-control"

@@ -343,11 +343,9 @@ const AddStudentForm = () => {
   return (
     <>
       <div className="container mt-4">
-        <div className="row justify-content-center">
           <div className="col-md-6">
-            <h2 className="text-center mt-3 mb-4">Inscripción de Alumno</h2>
+            <h2 className="mt-3 mb-4">Inscripción de Alumnos</h2>
           </div>
-        </div>
       </div>
       <form onSubmit={handleSubmit} className="container mt-4">
         <div className="mb-3 col-md-7">

@@ -51,7 +51,7 @@ const filterAlumnos = (query) => {
       // Realizar la solicitud DELETE para dar de baja al alumno
       axios
         .delete(`http://localhost:3000/delete/${selectedAlumno}`)
-        .then((response) => {
+        .then(() => {
         //   setMensaje(`Alumno ${selectedAlumno} dado de baja exitosamente.`);
           toast.success(`Alumno dado de baja exitosamente.`, {
             position: "top-center",
@@ -86,7 +86,7 @@ const filterAlumnos = (query) => {
 
   return (
     <div className="container">
-      <h2>Baja de Alumno</h2>
+      <h2 className="mt-4 mb-4">Baja de Alumno</h2>
       <div className="mb-3">
         <label htmlFor="busquedaInput" className="form-label">
           Buscar alumno:

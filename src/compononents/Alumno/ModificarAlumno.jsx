@@ -54,7 +54,7 @@ const Alumnos = () => {
     const { id } = alumnoSeleccionado;
     axios
       .put(`http://localhost:3000/update/${id}`, alumnoModificado)
-      .then((response) => {
+      .then(() => {
         setMensaje(`Datos del alumno ${id} modificados exitosamente.`);
         setAlumnos((prevAlumnos) => {
           const updatedAlumnos = prevAlumnos.map((alumno) => {

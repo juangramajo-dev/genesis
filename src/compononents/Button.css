@@ -1,0 +1,47 @@
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button .sun-icon,
+.button .moon-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+.button .sun-icon {
+  opacity: 1;
+}
+
+.button.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.button.dark-mode .sun-icon {
+  opacity: 0;
+}
+
+.button.dark-mode .moon-icon {
+  opacity: 1;
+}
+
+.button:hover {
+  background-color: #eeeeee;
+}
+
+.button.dark-mode:hover {
+  background-color: #444444;
+}
